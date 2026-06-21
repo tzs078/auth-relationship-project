@@ -1,0 +1,41 @@
+{% extends 'master/base.html' %}
+{% block content %}
+{% include 'master/message.html' %}
+<table class="table">
+    <a href="{% url 'task_add' %}" class="btn btn-success">Add</a>
+    <h1>Task List</h1>
+  <thead>
+    <tr>
+     <th>SL</th>
+     <th>Title</th>
+     <th>Description</th>
+     <th>status</th>
+     <th>Deadline</th>
+     <th>created_by</th>
+     <th>Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    
+    {% for i in task_data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.title}}</td>
+        <td>{{i.description}}</td>
+        <td>{{i.status}}</td>
+        <td>{{i.deadline}}</td>
+        <td>{{i.created_by}}</td>
+        <td>
+            <a href="{% url 'task_update'  i.id %}" class="btn btn-success">Update</a>
+        </td>
+        
+    </tr>
+        
+    {% endfor %}
+        
+  </tbody>
+</table>
+
+{% endblock content %}
+    

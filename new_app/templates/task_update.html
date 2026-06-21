@@ -1,0 +1,50 @@
+
+{% extends 'master/base.html' %}
+{% block content %}
+{% include 'master/message.html' %}
+<h1>Add Task Info</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Title</label>
+      <input type="text" name="title" value="{{task_up.title}}" class="form-control" id="exampleFormControlInput1"  />
+    </div>
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Description</label>
+      <textarea class="form-control" name="description"id="">{{task_up.description}}</textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Status</label>
+      <select name="status" class="form-control" id="">
+        <option value="not_started" 
+        {% if task_up.status == 'not_started' %}
+            selected
+        {% endif %}
+            >Not Started</option>
+        <option value="in_progress"
+        {% if task_up.status == 'in_progress' %}
+            selected
+        {% endif %}
+        >In Progress</option>
+        <option value="completed"
+        {% if task_up.status == 'completed' %}
+            selected
+        {% endif %}
+        >Completed</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleFormControlInput1" class="form-label">Deadline</label>
+      <input type="date" name="deadline" value="{{task_up.deadline|date:'Y-m-d'}}" class="form-control" id="exampleFormControlInput1"  />
+    </div>
+
+    <div class="mb-3">
+      <input type="submit" value="Add Task" class="form-control btn btn-success" id="exampleFormControlInput1"  />
+    </div>
+
+  </form>
+
+{% endblock content %}
